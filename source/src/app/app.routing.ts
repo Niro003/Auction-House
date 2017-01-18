@@ -10,6 +10,7 @@ import {ChangePasswordComponent} from "./change_password/changepassword.componen
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'home', component: HomeComponent },
     { path: 'about', component: AboutComponent },
     { path: 'login', component: LoginComponent},
     { path: 'registration', component: RegistrationComponent},
