@@ -1,4 +1,4 @@
-## ddw-login
+## Auction-House app
 > This project is generated with [generator-angular2-typescript](https://github.com/shibbir/generator-angular2-typescript) version 0.10.2.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
