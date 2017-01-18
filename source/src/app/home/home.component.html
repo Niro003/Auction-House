@@ -1,0 +1,13 @@
+<div>
+    <h3>Selling Electronics</h3>
+    <div class="resource">
+        <h4>Explanation</h4>
+        <p>We are selling electronics such as laptops, pc-stations, tvs and much more!
+        </p>
+    </div>
+
+    <div class="resource" *ngIf="loggedIn">
+        <h4>Welcome user:{{username}}</h4>
+        <p>We wish you a pleasant shopping experience!</p>
+    </div>
+</div>

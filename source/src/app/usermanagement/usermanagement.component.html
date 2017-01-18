@@ -1,0 +1,31 @@
+<div>
+    <h3>Usermanagement</h3>
+
+    <swui-datatable
+        class="material"
+        [rows]="rows"
+        [rowHeight] = "70"
+        [scrollbarH]="true"
+    [columnMode]="flex">
+        <template ngFor let-item [ngForOf]="columns">
+            <swui-datatable-column
+                                   [resizeable]="true"
+                                   [sortable]="true"
+                                   [draggable]="true"
+                                   [canAutoResize]="true"
+                                   name="{{item.name}}(s)">
+                <div *ngIf="item.prop !== 'username'">
+                    <template let-row="row" swui-datatable-cell-template >
+                        <inline-editor type="text"
+                                       [(ngModel)]="row[item.prop]" (onSave)="saveEditable(row[item.prop],item.prop,row)" ></inline-editor>
+                    </template>
+                </div>
+                <div *ngIf="item.prop === 'username'">
+                    <template let-row="row" swui-datatable-cell-template >
+                        <p>{{row[item.prop]}}</p>
+                    </template>
+                </div>
+            </swui-datatable-column>
+        </template>
+    </swui-datatable>
+</div>
