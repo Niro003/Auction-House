@@ -16,6 +16,7 @@ export class UsermanagementComponent implements OnInit {
 
     rows : any = [];
     columns : any = [];
+    editableText = 'myText';
 
     saveEditable(value : any,name : any, row : any) {
         this.accountService.updateUser(name,value,row.iduser_profile)
