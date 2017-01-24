@@ -8,7 +8,8 @@ var mysql = require('mysql');
 var MySQLStore = require('express-mysql-session')(session);
 var passwordHash = require('password-hash');
 var validator = require('validator');
-
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 // Constants
 const PORT = 8080;
 const uuidV4 = require('uuid/v4');
@@ -59,6 +60,22 @@ app.use(session({
     return uuid; // use UUIDs for session IDs
   }
 }));
+
+io.on('connection', (socket) => {
+    console.log('user connected');
+
+	socket.on('disconnect', function(){
+		console.log('user disconnected');
+	});
+
+	socket.on('add-message', (message) => {
+		io.emit('message', {type:'new-message', text: message});
+	});
+});
+
+http.listen(3002, function(){
+    console.log('listening on *:3000');
+});
 
 app.get('/api', function (req, res) {
 	pool.getConnection(function(err, connection) {
