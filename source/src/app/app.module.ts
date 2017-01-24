@@ -8,6 +8,7 @@ import {routing, appRoutingProviders} from './app.routing';
 import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 import {LoginComponent} from './login/login.component';
+import {ChatComponent} from './chat/chat.component'
 import {UsermanagementComponent} from './usermanagement/usermanagement.component';
 import {RegistrationComponent} from './registration/registration.component';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
@@ -25,7 +26,8 @@ import {ChangePasswordComponent} from './change_password/changepassword.componen
         LoginComponent,
         RegistrationComponent,
         UsermanagementComponent,
-        ChangePasswordComponent
+        ChangePasswordComponent,
+        ChatComponent
     ],
     imports: [
         BrowserModule,

@@ -8,7 +8,7 @@ module.exports = webpackMerge(commonConfig, {
 
     output: {
         path: helpers.root('dist'),
-        publicPath: 'http://localhost:3000/',
+        publicPath: 'http://localhost:3001/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
@@ -20,7 +20,7 @@ module.exports = webpackMerge(commonConfig, {
     devServer: {
         historyApiFallback: true,
         stats: 'minimal',
-        port: 3000,
+        port: 3001,
         // Send API requests on localhost to API server get around CORS.
        /* proxy: {
             "**": "http://localhost:8080/"
