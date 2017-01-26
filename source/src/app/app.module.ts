@@ -16,6 +16,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { Angular2DataTableModule } from 'angular2-data-table';
 import {InlineEditorModule} from 'ng2-inline-editor';
 import {ChangePasswordComponent} from './change_password/changepassword.component'
+import {SimpleNotificationsModule} from "angular2-notifications";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {ChangePasswordComponent} from './change_password/changepassword.componen
         routing,
         MyDatePickerModule,
         Angular2DataTableModule,
-        InlineEditorModule
+        InlineEditorModule,
+        SimpleNotificationsModule
     ],
     providers: [AuthenticationService,AccountService,appRoutingProviders,CookieService,UserService],
     bootstrap: [AppComponent]

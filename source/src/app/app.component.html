@@ -11,7 +11,6 @@
                 </button>
                 <a class="navbar-brand" href="#">Auction-House</a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -51,14 +50,6 @@
         </div><!-- /.container-fluid -->
     </nav>
 </div>
-<chat></chat>
-
-
-
-
-
-
-
 
 
 <div class="container main-container">
@@ -66,7 +57,8 @@
 </div>
 
 <div class="container footer-container">
-    <footer>
-         <span>&copy; 2016</span>
+    <footer navbar navbar-fixed-bottom>
+        <chat></chat>
     </footer>
 </div>
+<simple-notifications [options]="options"></simple-notifications>

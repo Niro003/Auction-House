@@ -15,6 +15,11 @@ import {AuthenticationService} from "./_services/authentication.service";
 export class AppComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService) { }
+    public options = {
+        position: ["bottom", "left"],
+        timeOut: 5000,
+        lastOnBottom: true
+    }
    /* loggedIn : boolean = false;
     username : string;
     constructor() {

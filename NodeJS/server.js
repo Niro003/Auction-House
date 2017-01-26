@@ -8,6 +8,7 @@ var mysql = require('mysql');
 var MySQLStore = require('express-mysql-session')(session);
 var passwordHash = require('password-hash');
 var validator = require('validator');
+const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 // Constants
@@ -18,7 +19,7 @@ const uuidV4 = require('uuid/v4');
  
 
 // App
-const app = express();
+
 
 
 
@@ -64,6 +65,23 @@ app.use(session({
 io.on('connection', (socket) => {
     console.log('user connected');
 
+	pool.getConnection(function(err, connection) {
+		connection.query('SELECT idlobby,name from lobby ' , function(err, rows, fields) {
+			connection.release();
+			console.log(rows);
+            for (var i = 0; i < rows.length; i++) {
+            	console.log(rows[i].name);
+                socket.on(rows[i].name, function(){
+                    console.log('user connected to lobby'+rows[i].name);
+                });
+            }
+		});
+	});
+
+	socket.on('public', function(){
+		console.log('user public');
+	});
+
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 	});
@@ -74,7 +92,7 @@ io.on('connection', (socket) => {
 });
 
 http.listen(3002, function(){
-    console.log('listening on *:3000');
+    console.log('listening on *:3002');
 });
 
 app.get('/api', function (req, res) {
@@ -203,6 +221,25 @@ app.get('/api/get/users', function(req, res){
 	}else{
 		res.send("fail");
 	}
+});
+
+app.get('/api/get/lobbies', function(req, res){
+    var sess = req.session;
+    console.log("Get Lobbies!")
+    if (sess.views){
+        sess.views++;
+        pool.getConnection(function(err, connection) {
+            console.log(req.body);
+            connection.query('SELECT idlobby,name from lobby ' , function(err, rows, fields) {
+                connection.release();
+                console.log(err);
+                console.log("Get Users Query Completed! Send it to the client!");
+                res.send(rows);
+            });
+        });
+    }else{
+        res.send("fail");
+    }
 });
 
 app.post('/api/update/user_profile',function(req, res){
