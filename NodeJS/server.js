@@ -62,6 +62,10 @@ app.use(session({
   }
 }));
 
+function sendToLobbyClient(name,message){
+    console.log('user connected to lobby '+name);
+    io.emit(name, message);
+}
 io.on('connection', (socket) => {
     console.log('user connected');
 
@@ -71,15 +75,9 @@ io.on('connection', (socket) => {
 			console.log(rows);
             for (var i = 0; i < rows.length; i++) {
             	console.log(rows[i].name);
-                socket.on(rows[i].name, function(){
-                    console.log('user connected to lobby'+rows[i].name);
-                });
+                socket.on(rows[i].name, sendToLobbyClient.bind(null,rows[i].name));
             }
 		});
-	});
-
-	socket.on('public', function(){
-		console.log('user public');
 	});
 
 	socket.on('disconnect', function(){
@@ -87,9 +85,12 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('add-message', (message) => {
-		io.emit('message', {type:'new-message', text: message});
+		console.log("sending message to add-message!");
+		io.emit('message', message);
 	});
 });
+
+
 
 http.listen(3002, function(){
     console.log('listening on *:3002');
@@ -140,7 +141,7 @@ app.post('/api/login', function(req, res){
 						sess.iduser_profile = rows[i].iduser_profile;
 						sess.views = 1;
 						console.log(req.session);
-						res.end("ok");
+						res.end(JSON.stringify(rows[i]));
 					//	res.end();
 					}
 				}

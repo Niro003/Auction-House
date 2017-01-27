@@ -26,11 +26,11 @@ export class ChatService {
         this.socket.emit(lobby, message);
     }
 
-    getMessages() {
+    setListenerForMessages(name : string) {
         let observer : any;
         let observable = new Observable((observer : any) => {
             this.socket = io(this.url);
-            this.socket.on('message', (data : any) => {
+            this.socket.on(name, (data : any) => {
                 observer.next(data);
             });
             return () => {

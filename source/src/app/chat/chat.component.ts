@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService }  from '../_services/chat.service';
-
+import {content} from "../_models/content";
 @Component({
     selector: 'chat',
     template : require('./chat.component.html'),
@@ -341,23 +341,29 @@ export class ChatComponent implements OnInit, OnDestroy {
     connection : any;
     message : any;
     lobbies : any;
-
+    currentChat : string = 'public';
     constructor(private chatService:ChatService) {}
-
+    iduser : any;
 
     sendMessage(){
-        this.chatService.sendMessage(this.message);
+        let user  = JSON.parse(localStorage.getItem("currentUser"));
+        console.log(user.iduser);
+        this.iduser = user.iduser;
+        this.chatService.sendMessageToLobby({"message" : this.message,"iduser":user.iduser},this.currentChat);
         this.message = '';
     }
 
     enterLobby(name : string){
-        console.log(name);
-        this.chatService.sendMessageToLobby(name,this.message);
+        this.currentChat = name;
+        this.connection.unsubscribe();
+        this.connection = this.chatService.setListenerForMessages(name).subscribe((content : content) => {
+            this.messages.push({message:content.message,iduser:content.iduser});
+        })
     }
 
     ngOnInit() {
-        this.connection = this.chatService.getMessages().subscribe(message => {
-            this.messages.push(message);
+        this.connection = this.chatService.setListenerForMessages(name).subscribe((content : content) => {
+            this.messages.push({message:content.message,iduser:content.iduser});
         })
         this.chatService.getLobbies()
             .subscribe((result : any) => {
@@ -365,7 +371,6 @@ export class ChatComponent implements OnInit, OnDestroy {
                 console.log(result);
             });
     }
-
     ngOnDestroy() {
         this.connection.unsubscribe();
     }

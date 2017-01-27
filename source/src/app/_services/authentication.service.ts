@@ -23,7 +23,7 @@ export class AuthenticationService {
                 if (response.text() !== "fail") {
                     this.notLoggedIn = false;
                     // store username
-                    localStorage.setItem('currentUser', JSON.stringify({ username: username}));
+                    localStorage.setItem('currentUser',response.text());
                     // return true to indicate successful login
                     return true;
                 } else {
