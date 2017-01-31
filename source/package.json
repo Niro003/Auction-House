@@ -29,6 +29,7 @@
     "@types/socket.io-client": "^1.4.29",
     "angular2-cookie": "^1.2.5",
     "angular2-data-table": "^2.2.1",
+    "angular2-moment": "^1.1.0",
     "angular2-notifications": "^0.4.49",
     "bootstrap": "^3.3.7",
     "bootstrap-timepicker": "^0.5.2",

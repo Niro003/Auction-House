@@ -13,6 +13,7 @@ import {AuthenticationService} from "./_services/authentication.service";
 })
 
 export class AppComponent implements OnInit {
+    inpProduct : any = "";
     constructor(
         private authenticationService: AuthenticationService) { }
     public options = {
@@ -34,6 +35,8 @@ export class AppComponent implements OnInit {
 
         console.log('AppComponent initializing...');
     }
+    findProduct(){
 
+    }
 
 }

@@ -41,9 +41,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form navbar-left">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search for products">
+                            <input type="text" name="inpProduct" class="form-control" placeholder="Search for products" [(ngModel)]="inpProduct">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="button" routerLink="/search/product/{{inpProduct}}"
+                        class="btn btn-default">Submit</button>
                     </form>
                 </ul>
             </div><!-- /.navbar-collapse -->

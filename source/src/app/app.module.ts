@@ -17,6 +17,9 @@ import { Angular2DataTableModule } from 'angular2-data-table';
 import {InlineEditorModule} from 'ng2-inline-editor';
 import {ChangePasswordComponent} from './change_password/changepassword.component'
 import {SimpleNotificationsModule} from "angular2-notifications";
+import {MomentModule} from "angular2-moment";
+import {ProductComponent} from "./product_search/product_search.component";
+import {EbayService} from "./_services/ebay.service";
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import {SimpleNotificationsModule} from "angular2-notifications";
         RegistrationComponent,
         UsermanagementComponent,
         ChangePasswordComponent,
-        ChatComponent
+        ChatComponent,
+        ProductComponent
     ],
     imports: [
         BrowserModule,
@@ -39,9 +43,10 @@ import {SimpleNotificationsModule} from "angular2-notifications";
         MyDatePickerModule,
         Angular2DataTableModule,
         InlineEditorModule,
-        SimpleNotificationsModule
+        SimpleNotificationsModule,
+        MomentModule
     ],
-    providers: [AuthenticationService,AccountService,appRoutingProviders,CookieService,UserService],
+    providers: [AuthenticationService,AccountService,appRoutingProviders,CookieService,UserService,EbayService],
     bootstrap: [AppComponent]
 })
 

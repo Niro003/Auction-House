@@ -7,6 +7,7 @@ import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from "./registration/registration.component";
 import {UsermanagementComponent} from "./usermanagement/usermanagement.component"
 import {ChangePasswordComponent} from "./change_password/changepassword.component";
+import {ProductComponent} from "./product_search/product_search.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'registration', component: RegistrationComponent},
     { path: 'users', component: UsermanagementComponent},
-    { path: 'new/password', component: ChangePasswordComponent}
+    { path: 'new/password', component: ChangePasswordComponent},
+    { path: 'search/product/:id', component: ProductComponent}
 
 ];
 

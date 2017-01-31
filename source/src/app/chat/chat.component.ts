@@ -341,15 +341,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     connection : any;
     message : any;
     lobbies : any;
-    currentChat : string = 'public';
+    currentChat : any = 'public';
     constructor(private chatService:ChatService) {}
     iduser : any;
 
     sendMessage(){
         let user  = JSON.parse(localStorage.getItem("currentUser"));
-        console.log(user.iduser);
+        console.log(user);
         this.iduser = user.iduser;
-        this.chatService.sendMessageToLobby({"message" : this.message,"iduser":user.iduser},this.currentChat);
+        this.chatService.sendMessageToLobby({"message" : this.message,"iduser":user.iduser,"username":user.username},this.currentChat);
         this.message = '';
     }
 
@@ -357,13 +357,13 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.currentChat = name;
         this.connection.unsubscribe();
         this.connection = this.chatService.setListenerForMessages(name).subscribe((content : content) => {
-            this.messages.push({message:content.message,iduser:content.iduser});
+            this.messages.push({message:content.message,iduser:content.iduser,msDate:new Date(),username:content.username});
         })
     }
 
     ngOnInit() {
-        this.connection = this.chatService.setListenerForMessages(name).subscribe((content : content) => {
-            this.messages.push({message:content.message,iduser:content.iduser});
+        this.connection = this.chatService.setListenerForMessages(this.currentChat).subscribe((content : content) => {
+            this.messages.push({message:content.message,iduser:content.iduser,msDate:new Date(),username:content.username});
         })
         this.chatService.getLobbies()
             .subscribe((result : any) => {

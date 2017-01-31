@@ -16,7 +16,7 @@
                             <div class="col-md-10 col-xs-10">
                                 <div class="messages msg_sent">
                                     <p>{{content.message}}</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                    <small>Sent: {{content.msDate | amTimeAgo}} by {{content.username}}</small>
                                 </div>
                             </div>
                             <div class="col-md-2 col-xs-2 avatar">
@@ -30,19 +30,21 @@
                             <div class="col-md-10 col-xs-10">
                                 <div class="messages msg_receive">
                                     <p>{{content.message}}</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                    <small>Received: {{content.msDate | amTimeAgo}} from {{content.username}}</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" [(ngModel)]="message" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
-                        <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" id="btn-chat" (click)="sendMessage()">Send</button>
-                        </span>
-                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input id="btn-input" [(ngModel)]="message" name="message" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                            <span class="input-group-btn">
+                            <button class="btn btn-primary btn-sm" id="btn-chat" (click)="sendMessage()">Send</button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
             </div>
     </div>
@@ -73,16 +75,10 @@
                     <span class="caret pull-right"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li><a href="#"> All Conversation </a>  <ul class="sub_menu_ list-unstyled">
-                        <li><a href="#"> All Conversation </a> </li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                    </li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#"> All Conversation </a></li>
+                    <li><a href="#">Lobbies</a></li>
+                    <li><a href="#">Friends</a></li>
+                    <li><a href="#">Recent Selected Chats</a></li>
                 </ul>
             </div>
 
