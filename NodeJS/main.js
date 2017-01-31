@@ -6,12 +6,10 @@ var bodyParser = require('body-parser');
 var session = require('express-session')
 var mysql = require('mysql');
 var MySQLStore = require('express-mysql-session')(session);
-var passwordHash = require('password-hash');
 var validator = require('validator');
 // make it global so it is accessible to the other node modules
-app = express();
+var app = express();
 http = require('http').Server(app);
-https = require("https");
 // Constants
 const PORT = 8080;
 const uuidV4 = require('uuid/v4');
@@ -56,6 +54,9 @@ app.use(session({
 
 // own modules
 
-require('./socket-connection/socket-connection');
-require('./account/account');
-require('./ebay-api/ebay-interface-api');
+const account = require('./account/account');
+account(app);
+const ebay = require('./ebay-api/ebay-interface-api');
+ebay(app);
+app.listen(PORT);
+console.log('Running on http://localhost:' + PORT);

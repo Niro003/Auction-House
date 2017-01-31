@@ -12,9 +12,7 @@ io.on('connection', (socket) => {
 pool.getConnection(function(err, connection) {
     connection.query('SELECT idlobby,name from lobby ' , function(err, rows, fields) {
         connection.release();
-        console.log(rows);
         for (var i = 0; i < rows.length; i++) {
-            console.log(rows[i].name);
             socket.on(rows[i].name, sendToLobbyClient.bind(null,rows[i].name));
         }
     });
