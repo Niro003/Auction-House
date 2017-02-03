@@ -13,7 +13,6 @@ http = require('http').Server(app);
 // Constants
 const PORT = 8080;
 const uuidV4 = require('uuid/v4');
-
 // App
 
 /** bodyParser.urlencoded(options)
@@ -54,9 +53,12 @@ app.use(session({
 
 // own modules
 
+require('./socket-connection/socket-connection')
 const account = require('./account/account');
 account(app);
 const ebay = require('./ebay-api/ebay-interface-api');
 ebay(app);
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
+
+

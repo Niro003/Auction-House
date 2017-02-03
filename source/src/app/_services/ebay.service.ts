@@ -13,15 +13,34 @@ export class EbayService {
 
     findProducts() : any {
         console.log("searching ebay products!");
-        return this.http.get(`/api/get/ebay/product/:id`)
+        return this.http.get(`/api/ebay/search`)
             .map((response: Response) => {
-                console.log(response);
                 if (response.text() === "fail"){
                     this.notificationService.error("Aborted","Finding a product failed");
                     return false;
                 }
                 this.notificationService.success("Success","Products have been found!");
-                return response.json();
+                // we are getting a callback from the api! we have to extract the json out of it
+                let data  = eval(response.text());
+                return data.findItemsByKeywordsResponse[0];
             });
     }
+
+    getProductDetails(id : any) : any {
+        console.log("searching ebay item!");
+        return this.http.get(`/api/ebay/product/` + id)
+            .map((response: Response) => {
+                if (response.text() === "fail"){
+                    this.notificationService.error("Aborted","Finding a product failed");
+                    return false;
+                }
+                this.notificationService.success("Success","Products have been found!");
+                // we are getting a callback from the api! we have to extract the json out of it
+                let data  = eval(response.text());
+                return data.findItemsByKeywordsResponse[0];
+            });
+    }
+}
+function _cb_findItemsByKeywords(data : any){
+    return data;
 }

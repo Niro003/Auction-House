@@ -9,13 +9,14 @@ import {EbayService} from "../_services/ebay.service";
 })
 
 export class ProductComponent implements OnInit {
-    model: any = {};
+    products: any;
     constructor(
         private ebayService: EbayService) { }
 
     ngOnInit() {
         this.ebayService.findProducts()
             .subscribe((result : any) => {
+                this.products = result.searchResult[0].item;
                 console.log(result);
             });
     }

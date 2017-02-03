@@ -59,3 +59,15 @@ a:hover {
 .inline-editor-button-group{
     display: block!important;
 }
+
+.details {
+    display: inline-block;
+    vertical-align:middle;
+}
+.photo {
+    display: inline-block;
+    vertical-align:middle;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #d1c7ac;
+}

@@ -1,1 +1,11 @@
 <h1>eBay Search Results</h1>
+<ul class="list-group">
+    <li *ngFor="let product of products" class="list-group-item">
+        <img class="photo" style="width:200px;height: auto;" [src]="product.galleryURL[0]" />
+        <div class="details">
+            <a style="font-size:20px;">{{product.title}}</a>
+            <br>
+            <span style="font-size:30px;">{{product.sellingStatus[0].currentPrice[0]['@currencyId']}} {{product.sellingStatus[0].currentPrice[0].__value__}}</span>
+        </div>
+    </li>
+</ul>
