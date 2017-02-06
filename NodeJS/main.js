@@ -9,7 +9,10 @@ var MySQLStore = require('express-mysql-session')(session);
 var validator = require('validator');
 // make it global so it is accessible to the other node modules
 var app = express();
-http = require('http').Server(app);
+httpTun = require('http');
+http = httpTun.Server(app);
+https = require('https');
+
 // Constants
 const PORT = 8080;
 const uuidV4 = require('uuid/v4');

@@ -18,8 +18,9 @@ import {InlineEditorModule} from 'ng2-inline-editor';
 import {ChangePasswordComponent} from './change_password/changepassword.component'
 import {SimpleNotificationsModule} from "angular2-notifications";
 import {MomentModule} from "angular2-moment";
-import {ProductComponent} from "./product_search/product_search.component";
+import {ProductSearchComponent} from "./product_search/product_search.component";
 import {EbayService} from "./_services/ebay.service";
+import {ProductDetailsComponent} from "./product_details/product_details.component";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {EbayService} from "./_services/ebay.service";
         UsermanagementComponent,
         ChangePasswordComponent,
         ChatComponent,
-        ProductComponent
+        ProductSearchComponent,
+        ProductDetailsComponent
     ],
     imports: [
         BrowserModule,

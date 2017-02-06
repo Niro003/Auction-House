@@ -22,22 +22,22 @@ export class EbayService {
                 this.notificationService.success("Success","Products have been found!");
                 // we are getting a callback from the api! we have to extract the json out of it
                 let data  = eval(response.text());
+                console.log(data);
                 return data.findItemsByKeywordsResponse[0];
             });
     }
 
     getProductDetails(id : any) : any {
-        console.log("searching ebay item!");
+        console.log("getting details of ebay item!");
         return this.http.get(`/api/ebay/product/` + id)
             .map((response: Response) => {
                 if (response.text() === "fail"){
                     this.notificationService.error("Aborted","Finding a product failed");
                     return false;
                 }
-                this.notificationService.success("Success","Products have been found!");
+                this.notificationService.success("Success","Product details are loaded!");
                 // we are getting a callback from the api! we have to extract the json out of it
-                let data  = eval(response.text());
-                return data.findItemsByKeywordsResponse[0];
+                return response;
             });
     }
 }

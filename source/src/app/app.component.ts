@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
         }
     } */
     ngOnInit() {
-
         console.log('AppComponent initializing...');
     }
     findProduct(){

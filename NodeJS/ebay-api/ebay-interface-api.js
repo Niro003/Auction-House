@@ -17,6 +17,20 @@ module.exports = (app) =>{
             // Header fields for proxy server if necessary
         }
     });
+    var tunnelingAgentHTTP = tunnel.httpOverHttp({
+        maxSockets: 50, // Defaults to 5
+
+        proxy: { // Proxy settings
+            host: '192.168.51.8', // Defaults to 'localhost'
+            port: 3128, // Defaults to 80
+
+            // Basic authorization for proxy server if necessary
+            proxyAuth: 'dev:perf0110',
+
+            // Header fields for proxy server if necessary
+        }
+    });
+
 
     var options = {
         hostname: 'svcs.ebay.com',
@@ -25,12 +39,17 @@ module.exports = (app) =>{
         path: '/',
         method: 'GET'
     };
+    var optionsHTTP = {
+        hostname : 'open.api.ebay.com',
+        agent : tunnelingAgentHTTP,
+        port : 80
+    }
     app.get('/api/ebay/search', function (req, res) {
         options.path = '/services/search/FindingService/v1' +
             '?SECURITY-APPNAME=Nicholas-Auchtion-PRD-dcd409a1e-09cb3c14&OPERATION-NAME=findItemsByKeywords&' +
             'SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&callback=_cb_findItemsByKeywords&' +
-            'REST-PAYLOAD&keywords=iPhone&paginationInput.entriesPerPage=6&GLOBAL-ID=EBAY-US&siteid=0',
-        var ret= "";
+            'REST-PAYLOAD&keywords=iPhone&paginationInput.entriesPerPage=6&GLOBAL-ID=EBAY-US&siteid=0';
+        let ret= "";
         var httpsReq = https.request(options, (httpRes) => {
             console.log('statusCode:', res.statusCode);
             console.log('headers:', res.headers);
@@ -53,17 +72,12 @@ module.exports = (app) =>{
         httpsReq.end();
     });
 
-    app.get('/api/ebay/product', function (req, res) {
-        options.hostname = 'open.api.ebay.com';
-        options.path = `/shopping?
-        callname=GetSingleItem&
-        responseencoding=JSON&
-        appid=YourAppIDHere&
-        siteid=0&
-        version=967&
-        ItemID=180126682091`;
-        var ret= "";
-        var httpsReq = https.request(options, (httpRes) => {
+    app.get('/api/ebay/product/:id', function (req, res) {
+        console.log("getting product details...");
+        console.log(req.params.id);
+        optionsHTTP.path = `/shopping?callname=GetSingleItem&responseencoding=JSON&appid=Nicholas-Auchtion-PRD-dcd409a1e-09cb3c14&siteid=0&version=967&ItemID=`+req.params.id;
+        let ret= "";
+        let httpReq = httpTun.get(optionsHTTP, (httpRes) => {
                 console.log('statusCode:', res.statusCode);
         console.log('headers:', res.headers);
 
@@ -78,13 +92,12 @@ module.exports = (app) =>{
     });
     });
 
-        httpsReq.on('error', (e) => {
+        httpReq.on('error', (e) => {
             console.error(e);
         res.send(e);
     });
-        httpsReq.end();
+        httpReq.end();
     });
 
-    const https = require('https');
 
 }

@@ -8,7 +8,7 @@ import {EbayService} from "../_services/ebay.service";
     template: require('./product_search.component.html')
 })
 
-export class ProductComponent implements OnInit {
+export class ProductSearchComponent implements OnInit {
     products: any;
     constructor(
         private ebayService: EbayService) { }
