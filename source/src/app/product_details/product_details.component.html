@@ -1,3 +1,8 @@
-<h1>hallo</h1>
-<p>{{id}} {{details.PictureURL}}</p>
-<img class="photo" style="width:200px;height: auto;" src="{{details.PictureURL}}" />
+ <img class="photo" style="width:400px;height: auto;float:left;" src="{{details.hasOwnProperty('PictureURL') ? details.PictureURL[0] : './images/Lobby.png'}}" />
+    <span style="font-size: 30px; font-weight: bold;">{{details.Title}}</span>
+    <span style="font-size:30px;">
+        <p>Item Condition: {{details.ConditionDisplayName}}</p>
+    </span>
+    <button type="button" class="btn btn-primary">Buy it now</button>
+    <button type="button" class="btn btn-primary">Bid on it</button>
+

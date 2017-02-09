@@ -34,6 +34,9 @@ export class RegistrationComponent implements OnInit {
         console.log(this.model.birthdate);
         console.log('onDateChanged(): ', event.date, ' - jsdate: ', new Date(event.jsdate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
     }
+    ebayRegistration(){
+
+    }
     register() {
         console.log("Triggered registration");
         this.loading = true;

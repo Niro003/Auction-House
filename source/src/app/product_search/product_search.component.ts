@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { Router } from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {AccountService} from "../_services/account.service";
 import {EbayService} from "../_services/ebay.service";
 
@@ -10,15 +10,24 @@ import {EbayService} from "../_services/ebay.service";
 
 export class ProductSearchComponent implements OnInit {
     products: any;
-    constructor(
+    private sub: any;
+    id : any;
+    constructor(private route: ActivatedRoute,
         private ebayService: EbayService) { }
 
     ngOnInit() {
-        this.ebayService.findProducts()
-            .subscribe((result : any) => {
-                this.products = result.searchResult[0].item;
-                console.log(result);
-            });
+        this.sub = this.route.params.subscribe(params => {
+            this.id = params['id']; // (+) converts string 'id' to a number
+            console.log(this.id);
+            this.ebayService.findProducts(this.id)
+                .subscribe((result : any) => {
+                    this.products = result.searchResult[0].item;
+                    console.log(this.products);
+                });
+            // In a real app: dispatch action to load the details here.
+        });
+
+
     }
 
 }

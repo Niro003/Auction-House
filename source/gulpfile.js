@@ -13,7 +13,7 @@ gulp.task('clean:dist', function(done) {
     rimraf(paths.dist, done);
 });
 
-gulp.task('dev-server', plugins.shell.task('webpack-dev-server --inline --colors --progress --output-public-path'));
+gulp.task('dev-server', plugins.shell.task('webpack-dev-server --https --inline --colors --progress --output-public-path'));
 
 gulp.task('build', plugins.shell.task([
     'rimraf dist',

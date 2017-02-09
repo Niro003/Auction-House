@@ -11,9 +11,18 @@ export class EbayService {
 
     constructor(private http: Http,private notificationService: NotificationsService) {}
 
-    findProducts() : any {
+    getAccessToken(code : string) : any {
+        console.log(encodeURIComponent(code));
+        return this.http.get(`/api/ebay/accesstoken/`+encodeURIComponent(code))
+            .map((response: Response) => {
+                console.log(response);
+                return response;
+            });
+    }
+
+    findProducts(id : any) : any {
         console.log("searching ebay products!");
-        return this.http.get(`/api/ebay/search`)
+        return this.http.get(`/api/ebay/search/`+id)
             .map((response: Response) => {
                 if (response.text() === "fail"){
                     this.notificationService.error("Aborted","Finding a product failed");
@@ -29,7 +38,7 @@ export class EbayService {
 
     getProductDetails(id : any) : any {
         console.log("getting details of ebay item!");
-        return this.http.get(`/api/ebay/product/` + id)
+        return this.http.get(`/api/ebay/buy/get/item/` + id)
             .map((response: Response) => {
                 if (response.text() === "fail"){
                     this.notificationService.error("Aborted","Finding a product failed");

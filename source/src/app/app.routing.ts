@@ -9,6 +9,7 @@ import {UsermanagementComponent} from "./usermanagement/usermanagement.component
 import {ChangePasswordComponent} from "./change_password/changepassword.component";
 import {ProductSearchComponent} from "./product_search/product_search.component";
 import {ProductDetailsComponent} from "./product_details/product_details.component";
+import {EbayRegistrationComponent} from "./ebay_registration/ebay_registration.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'login', component: LoginComponent},
     { path: 'registration', component: RegistrationComponent},
+    { path: 'ebay/registration', component: EbayRegistrationComponent},
     { path: 'users', component: UsermanagementComponent},
     { path: 'new/password', component: ChangePasswordComponent},
     { path: 'search/product/:id', component: ProductSearchComponent},

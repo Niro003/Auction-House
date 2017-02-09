@@ -8,10 +8,10 @@ var mysql = require('mysql');
 var MySQLStore = require('express-mysql-session')(session);
 var validator = require('validator');
 // make it global so it is accessible to the other node modules
-var app = express();
+app = express();
 httpTun = require('http');
-http = httpTun.Server(app);
 https = require('https');
+http = httpTun.Server(app);
 
 // Constants
 const PORT = 8080;

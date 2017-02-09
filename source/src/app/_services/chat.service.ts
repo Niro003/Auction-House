@@ -14,7 +14,7 @@ export class ChatService {
         // set token if saved in local storage
     }
 
-    private url = 'http://localhost:3002';
+    private url = 'https://localhost:3002';
     private socket : any;
 
     sendMessage(message : any){

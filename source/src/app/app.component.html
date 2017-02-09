@@ -32,6 +32,7 @@
                                     <span *ngIf="this.authenticationService.notLoggedIn">Login</span>
                                 </a>
                             </li>
+                            <li><a routerLink="/registration"><span *ngIf="this.authenticationService.notLoggedIn">Registraion</span></a></li>
                             <li><a routerLink="/users">User-Management</a></li>
                             <li><span *ngIf="this.authenticationService.notLoggedIn == false"><a routerLink="/new/password">Change Your Password</a> </span></li>
                             <li></li>
@@ -44,8 +45,8 @@
                         <div class="form-group">
                             <input type="text" name="inpProduct" class="form-control" placeholder="Search for products" [(ngModel)]="inpProduct">
                         </div>
-                        <button type="button" routerLink="/search/product/{{inpProduct}}"
-                        class="btn btn-default">Submit</button>
+                        <a type="button" routerLink="/search/product/{{inpProduct}}"
+                        class="btn btn-default">Submit</a>
                     </form>
                 </ul>
             </div><!-- /.navbar-collapse -->

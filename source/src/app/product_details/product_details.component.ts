@@ -15,7 +15,7 @@ import {EbayService} from "../_services/ebay.service";
 })
 
 export class ProductDetailsComponent implements OnInit {
-    details : any = {PictureURL:'../images/giphy.gif'};
+    details : any = {PictureURL:['https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif']};
     private sub: any;
     id : any;
     ngOnInit(){
@@ -35,7 +35,7 @@ export class ProductDetailsComponent implements OnInit {
             .subscribe((result : any) => {
                 let erg = JSON.parse(result._body);
                 console.log(erg);
-   //             this.details = JSON.parse(result._body).item;
+   //             this.details = erg.Item;
             });
     }
     ngOnDestroy() {

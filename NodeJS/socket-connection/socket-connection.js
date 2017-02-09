@@ -1,7 +1,14 @@
 /**
  * Created by grill on 31.01.2017.
  */
-var io = require('socket.io')(http);
+var fs = require('fs');
+var serverPort = 3002;
+var options = {
+    key: fs.readFileSync('./file.pem'),
+    cert: fs.readFileSync('./file.crt')
+};
+var server = https.createServer(options, app);
+var io = require('socket.io')(server);
 function sendToLobbyClient(name,message){
     console.log('user connected to lobby '+name);
     io.emit(name, message);
@@ -30,6 +37,6 @@ io.emit('message', message);
 
 
 
-http.listen(3002, function(){
-    console.log('listening on *:3002');
+server.listen(serverPort, function(){
+    console.log('listening on *:' + serverPort);
 });

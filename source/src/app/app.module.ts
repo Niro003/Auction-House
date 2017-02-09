@@ -21,6 +21,7 @@ import {MomentModule} from "angular2-moment";
 import {ProductSearchComponent} from "./product_search/product_search.component";
 import {EbayService} from "./_services/ebay.service";
 import {ProductDetailsComponent} from "./product_details/product_details.component";
+import {EbayRegistrationComponent} from "./ebay_registration/ebay_registration.component";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {ProductDetailsComponent} from "./product_details/product_details.compone
         AboutComponent,
         LoginComponent,
         RegistrationComponent,
+        EbayRegistrationComponent,
         UsermanagementComponent,
         ChangePasswordComponent,
         ChatComponent,
